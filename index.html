@@ -1,0 +1,344 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>mp3</title>
+<head>
+  <script type="text/javascript" src="jquery-1.9.1.js"></script>
+  <style type="text/css">
+    .mp3_container{
+      height:1136px;
+      width:640px;
+      border: 0px solid #efefef;
+      margin: 0 auto;
+      background: url(images/bg.png);
+    }
+    .mp3_title{
+      height: 154px;
+      width:100%;
+      border:0px solid #efefef;
+    }
+    .mp3_title .mp3_title_con{
+      width:100%;
+      height:60px;
+      border: 0px solid #efefef;
+      margin-top:48px;
+      text-align: center;
+    }
+    .mp3_title .mp3_title_con span{
+      font-size: 36px;
+      text-align: center;
+      line-height: 60px;
+    }
+
+    .mp3_photo{
+      height: 346px;
+      width:100%;
+      border:0px solid #efefef;
+    }
+    .mp3_photo .photoImg{
+      width:346px;
+      height:346px;
+      background-image: url(images/photo.jpg);
+      margin:0 auto;
+      -webkit-animation-name: rotate;
+      -webkit-animation-duration: 40s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+    }
+
+    @-webkit-keyframes rotate {
+      from {-webkit-transform:rotate(0deg);}
+      to {-webkit-transform:rotate(360deg);}
+    }
+
+    .zxhh{-webkit-animation-play-state:running;}
+    .bxzhh{-webkit-animation-play-state:paused;}
+
+
+    .mp3_photo .map3_control{
+      border:0px solid red;
+      width:117px;
+      height:117px;
+      position: relative;
+      left:264px;
+      top:-236px;
+      background-image:url(images/start_song.png); 
+    }
+
+    .mp3_progress{
+      height: 72px;
+      width:100%;
+      border:0px solid #efefef;
+      position: relative;
+    }
+
+    .mp3_progress .progress_bar{
+      height: 4px;
+      width:377px;
+      border:1px solid #efefef;
+      margin: 0 auto;
+      margin-top:56px;
+      background-image:url(images/progress_bar.png); 
+    }
+    .mp3_progress .progress_bar .progress_bar_state{
+      height: 100%;
+      background-image: url(images/progress_bar_state.png);
+      width:1px;
+      -webkit-animation-name: goProgressState;
+      -webkit-animation-duration: 40s;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-timing-function: linear;
+    }
+
+    @-webkit-keyframes goProgressState {
+        0%{width:1px;}
+        100%{width:377px;}
+    }
+
+    .mp3_progress .progress_bar_circle{
+      height: 30px;
+      width: 30px;
+      background-image: url(images/propress_bar_circle.png);
+      position: absolute;
+      left:128px;
+      top:-11px;
+      cursor: pointer;
+      -webkit-animation-name: goProgress;
+      -webkit-animation-duration: 40s;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-timing-function: linear;
+    }
+    @-webkit-keyframes goProgress {
+        0%{left:128px;}
+        100%{left:484px;}
+    }
+
+    .mp3_words{
+      height: 384px;
+      width:100%;
+      border:0px solid #efefef;
+      text-align: center;
+      overflow: hidden;
+    }
+    .mp3_words .words_container{
+      width:377px;
+      height: 100%;
+      border: 0px solid #efefef;
+      margin: 0 auto;
+      position: relative;
+      -webkit-animation-name: wordsUp;
+      -webkit-animation-duration: 40s;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-timing-function: linear;
+
+    }
+
+    @-webkit-keyframes wordsUp {
+        0%{top:0;}
+        100%{top:-384px;}
+    }
+    .mp3_words .words_container p{
+      text-align: center;
+      color:#fff;
+    }
+
+    .mp3_download{
+      width:640px;
+      height:122px;
+      border: 1px solid #efefef;
+      background-image: url(images/downloadbg.png);
+      opacity: 0.7; 
+
+    }
+
+    .mp3_download .logo{
+      width:91px;
+      height:91px;
+      border:0px solid #efefef;
+      margin-top:16px;
+      margin-left: 44px;
+      float: left;
+      background-image: url(images/logo.png);
+
+    }
+    .mp3_download .appInstruction{
+      width:280px;
+      height:60px;
+      border:0px solid #efefef;
+      margin-top:29px;
+      margin-left: 22px;
+      float: left;
+      color: #ffffff;
+    }
+    .mp3_download .appInstruction div{
+      margin: 10px;
+    }
+    .mp3_download .downloadBtn{
+      width: 78px;
+      height: 62px;
+      border: 0px solid #efefef;
+      float: left;
+      margin-top:31px;
+      margin-left: 80px;
+      background-image: url(images/downloadBtn.png);
+    }
+
+    
+  </style>
+</head>
+<body>
+<div class="mp3_container">
+  <div class="mp3_title">
+    <div class="mp3_title_con">
+      <span>歌曲名称--作者</span>
+    </div>
+  </div>
+  <div class="mp3_photo">
+    <audio id="myAudio" controls src="GEM.mp3"><h1>你的浏览器OUT了！</h1></audio>
+    <div class="photoImg" id="photoImg">
+       
+    </div>
+    <div class="map3_control" id="map3_control">
+
+    </div>
+
+  </div>
+  <div class="mp3_progress">
+      <div class="progress_bar">
+        <div class="progress_bar_state" id="progressState"></div>
+      </div>
+      <div class="progress_bar_circle" id="progressBarCircle"></div>
+  </div>
+  <div class="mp3_words">
+      <div class="words_container" id="words_container">
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+        <p>
+          我到了这个时候还是一样
+        </p>
+      </div>
+      
+  </div>
+
+  <div class="mp3_download">
+    <div class="logo"></div>
+    <div class="appInstruction">
+      <div><span>哼哼音乐</span></div>
+
+      <div><span>玩转音乐，下一个原创明星就是你！</span></div>
+    </div>
+    <div class="downloadBtn"></div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  $(function(){
+      var controlBtn=$("#map3_control");
+      var MCD=$("#photoImg");
+      var progressBarCircle = $("#progressBarCircle");
+      var MP=document.getElementById("myAudio");
+      var wordsContainer = $("#words_container");
+      var progressState = $("#progressState");
+
+      MCD.addClass("bxzhh");
+      progressBarCircle.addClass("bxzhh");
+      wordsContainer.addClass("bxzhh");
+      progressState.addClass("bxzhh");
+      
+      controlBtn.click(function(argument){
+          if(MP.paused){
+             controlBtn.css("backgroundImage","url(images/stop_song.png)");
+             MP.play();
+             alert(MP.duration);
+             MCD.removeClass("bxzhh");
+             MCD.addClass("zxhh");
+
+             //progressBarCircle.animationDuration = MP.duration;
+             progressBarCircle[0].style.animationDuration=MP.duration+"s"
+
+             progressBarCircle.removeClass("bxzhh");
+             progressBarCircle.addClass("zxhh");
+             wordsContainer.removeClass("bxzhh");
+             wordsContainer.addClass("zxhh");
+             progressState.removeClass("bxzhh");
+             progressState.addClass("zxhh");
+          }else{
+             controlBtn.css("backgroundImage","url(images/start_song.png)");
+             MP.pause();
+
+             MCD.removeClass("zxhh");
+             MCD.addClass("bxzhh");
+             progressBarCircle.removeClass("zxhh");
+             progressBarCircle.addClass("bxzhh");
+             wordsContainer.removeClass("zxhh");
+             wordsContainer.addClass("bxzhh");
+             progressState.removeClass("zxhh");
+             progressState.addClass("bxzhh");
+          }
+        
+      }); 
+
+      MP.addEventListener('ended',function(){
+          controlBtn.css("backgroundImage","url(images/start_song.png)");
+          MCD.removeClass("zxhh");
+          MCD.addClass("bxzhh");
+          progressBarCircle.removeClass("zxhh");
+          progressBarCircle.addClass("bxzhh");
+          wordsContainer.removeClass("zxhh");
+          wordsContainer.addClass("bxzhh");
+          progressState.removeClass("zxhh");
+          progressState.addClass("bxzhh");
+      });
+
+      $(".progress_bar").click(function(e){
+         var x = e.offsetX;
+         var y = e.offsetY;
+         alert(x);
+         //$("#progressBarCircle").css("position","relative");
+         $("#progressBarCircle").css("left",x+"px");
+      });
+  });
+  
+  
+
+</script>
+<body>
